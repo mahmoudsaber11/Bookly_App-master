@@ -27,7 +27,9 @@ class BookDetailsViewBody extends StatelessWidget {
                     height: 46,
                   ),
                 ),
-                const SimilarBooksSection(),
+                SimilarBooksSection(
+                  book: bookModel,
+                ),
               ],
             ),
           ),
