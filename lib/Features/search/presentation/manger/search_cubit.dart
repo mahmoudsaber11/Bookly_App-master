@@ -9,13 +9,15 @@ class SearchCubit extends Cubit<SearchStates> {
   final SearchRepo searchRepo;
 
   void getSearch({required val}) {
-    emit(SearchLoading());
-    searchRepo.getSearch(val).then((value) {
-      value.fold((failure) {
-        emit(SearchFailure(failure.toString()));
-      }, (search) {
-        emit(SearchSuccess(search));
+    if (val.isNotEmpty) {
+      emit(SearchLoading());
+      searchRepo.getSearch(val).then((value) {
+        value.fold((failure) {
+          emit(SearchFailure(failure.toString()));
+        }, (search) {
+          emit(SearchSuccess(search));
+        });
       });
-    });
+    }
   }
 }
